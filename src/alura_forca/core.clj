@@ -18,7 +18,15 @@
   (defn acertou? [chute palavra]
     (.contains palavra chute))
 
+  (defn imprime-forca [vidas palavra acertos]
+    (println "Vidas " vidas)
+    (doseq [letra (seq palavra)]
+      (if (contains? acertos (str letra))
+        (print letra " ") (print "_" " ")))
+    (println))
+
   (defn jogo [vidas palavra acertos]
+    (imprime-forca vidas palavra acertos)
     (cond
       (= vidas 0) (perdeu)
       (acertou-palavra-toda? palavra acertos) (ganhou)
